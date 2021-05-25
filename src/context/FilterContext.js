@@ -6,13 +6,14 @@ export const FilterContext = createContext()
 
 const initialState = {
   gradients: [],
+  filter: "all",
   loading: false,
   error: ""
 }
 
 export const FilterContextProvider = ({children}) => {
   const [state, dispatch] = useReducer(filterReducer, initialState)
-  const { gradients, loading, error } = initialState
+  const { gradients, loading, error, filter } = state
   const isMounted = useIsMounted()
 
   useEffect(() => {
@@ -39,10 +40,10 @@ export const FilterContextProvider = ({children}) => {
           dispatch({type: 'FETCH_FAILURE', payload: error.message})
         }
       })
-  }, []) 
+  }, [isMounted]) 
 
   return (
-    <FilterContext.Provider value={{ gradients, loading, error, dispatch}}>
+    <FilterContext.Provider value={{ gradients, filter, loading, error, dispatch}}>
       {children}
     </FilterContext.Provider>
   )

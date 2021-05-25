@@ -6,6 +6,8 @@ export const filterReducer = (state, action) => {
       return { gradients: action.payload, loading: false, error: "" }
     case 'FETCH_FAILURE':
       return { ...state, loading: false, error: action.payload }
+    case 'FILTER_CHANGE':
+      return {...state, filter: action.payload}
     default:
       throw new Error(`Unsupported action type ${action.type} in userReducer`)
   }

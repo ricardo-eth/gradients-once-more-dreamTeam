@@ -1,9 +1,10 @@
 import { useFilter } from "../context/FilterContext"
 
 const GradientsSelect = () => {
-  const { filter, setFilter } = useFilter()
+  const { dispatch, filter, gradients } = useFilter()
+
   const handleSelectChange = (e) => {
-    setFilter(e.target.value)
+    dispatch({ type: "FILTER_CHANGE", payload: e.target.value})
   }
   return (
     <div className="input-group mb-3">
