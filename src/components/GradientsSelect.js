@@ -1,5 +1,4 @@
-import {useFilter} from "../context/FilterContext"
-import { uniqueTags as tags } from "../gradients"
+import { useFilter } from "../context/FilterContext"
 
 const GradientsSelect = () => {
   const { filter, setFilter } = useFilter()
