@@ -5,7 +5,12 @@ import { useIsMounted } from "../hooks/useIsMounted"
 export const FilterContext = createContext()
 
 const initialState = {
-  gradients: [],
+  gradients: [{
+    name: "",
+    star: "",
+    end: "",
+    id: "",
+  }],
   filter: "all",
   loading: false,
   error: ""
@@ -15,6 +20,7 @@ export const FilterContextProvider = ({children}) => {
   const [state, dispatch] = useReducer(filterReducer, initialState)
   const { gradients, loading, error, filter } = state
   const isMounted = useIsMounted()
+  console.log(gradients)
 
   useEffect(() => {
     dispatch({type: 'FETCH_INIT'})

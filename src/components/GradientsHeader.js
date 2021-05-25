@@ -32,7 +32,7 @@ const GradientsHeader = (props) => {
     loading ? (
         <p>loading...</p>
       ) : (
-    <header className="text-center bg-dark text-white py-5 mb-5" style={style}>
+    <header className="text-center bg-dark text-white py-5 mb-5" style={style} >
       {children}
       <button
         aria-label="Clicker pour afficher le dégradé précédant"
