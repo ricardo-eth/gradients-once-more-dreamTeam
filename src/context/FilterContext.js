@@ -18,7 +18,7 @@ export const FilterContextProvider = ({children}) => {
 
   useEffect(() => {
     dispatch({type: 'FETCH_INIT'})
-    fetch(process.env.local.REACT_APP_GRADIENT_API_URL, {
+    fetch("https://gradients-api.herokuapp.com/gradients", {
       method: 'GET',
     })
     .then((response) => {
@@ -28,9 +28,7 @@ export const FilterContextProvider = ({children}) => {
       return response.json()
     })
     .then((result) => {
-      console.log(result)
         if (isMounted.current) {
-        console.log(result)
         dispatch({type: 'FETCH_SUCCESS', payload: result})
         }
       })

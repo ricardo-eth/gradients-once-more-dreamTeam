@@ -1,7 +1,8 @@
 import { useFilter } from "../context/FilterContext"
+import { uniqueTags } from "../gradients"
 
 const GradientsSelect = () => {
-  const { dispatch, filter, gradients } = useFilter()
+  const { dispatch, filter } = useFilter()
 
   const handleSelectChange = (e) => {
     dispatch({ type: "FILTER_CHANGE", payload: e.target.value})
@@ -18,7 +19,7 @@ const GradientsSelect = () => {
         onChange={handleSelectChange}
       >
         <option value="all">Tous</option>
-        {tags.map((el) => (
+        {uniqueTags.map((el) => (
           <option key={el} value={el}>
             {el}
           </option>
