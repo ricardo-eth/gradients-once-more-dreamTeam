@@ -46,8 +46,10 @@ export const FilterContextProvider = ({children}) => {
           dispatch({type: 'FETCH_FAILURE', payload: error.message})
         }
       })
-  }, [isMounted]) 
+  }, [isMounted, filter]) 
 
+  // console.log(gradients)
+  // console.log(filter)
   return (
     <FilterContext.Provider value={{ gradients, filter, loading, error, dispatch}}>
       {children}

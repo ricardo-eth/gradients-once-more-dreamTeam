@@ -7,6 +7,7 @@ export const filterReducer = (state, action) => {
       if (state.filter !== 'all') {
         action.payload.forEach((elem) => {
           if (elem.tags.includes(state.filter)) {
+            console.log(elem)
             list.push({
               colorStart: elem.start,
               colorEnd: elem.end,
@@ -27,7 +28,7 @@ export const filterReducer = (state, action) => {
             })
           }
       }
-      return { gradients: list, loading: false, error: "" }
+      return {...state, gradients: list, loading: false, error: "" }
     case 'FETCH_FAILURE':
       return { ...state, loading: false, error: action.payload }
     case 'FILTER_CHANGE':

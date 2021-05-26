@@ -8,7 +8,8 @@ const GradientTagButton = ({ tag }) => {
       type="button"
       className={`btn btn-sm me-2 mb-2 ${className}`}
       disabled={filter === gradients.tag}
-      onClick={() => dispatch(tag)}
+      value={tag}
+      onClick={(e) => dispatch({type: "FILTER_CHANGE", payload: e.target.value })}
     >
       {tag}
     </button>
