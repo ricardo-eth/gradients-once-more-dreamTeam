@@ -1,6 +1,26 @@
-import {createContext, useContext, useEffect, useReducer} from "react"
+import {createContext, useContext, useEffect, useReducer, useState} from "react"
 import { filterReducer } from "../reducers/filterReducer"
 import { useIsMounted } from "../hooks/useIsMounted"
+
+function allTags(tags) {
+ 
+  let listTotal = []
+  /* retourner la liste des tags uniques */
+  for (let element of tags) {
+    if ("tags" in element) {
+      listTotal = listTotal.concat(element.tags);
+    }
+  }
+  const listTagsUnique = [];
+  listTotal.forEach((el) => {
+    if (!listTagsUnique.includes(el)) {
+      //listTagsUnique = listTagsUnique.concat([el])
+      listTagsUnique.push(el);
+    }
+  });
+
+  return listTagsUnique;
+}
 
 export const FilterContext = createContext()
 
@@ -18,6 +38,7 @@ const initialState = {
 }
 
 export const FilterContextProvider = ({children}) => {
+  const [colors, setColors] = useState([])
   const [state, dispatch] = useReducer(filterReducer, initialState)
   const { gradients, loading, error, filter } = state
   const isMounted = useIsMounted()
@@ -37,6 +58,7 @@ export const FilterContextProvider = ({children}) => {
     .then((result) => {
         if (isMounted.current) {
         dispatch({type: 'FETCH_SUCCESS', payload: result})
+        setColors(allTags(result))
         }
         
       })
@@ -48,10 +70,9 @@ export const FilterContextProvider = ({children}) => {
       })
   }, [isMounted, filter]) 
 
-  // console.log(gradients)
-  // console.log(filter)
+  
   return (
-    <FilterContext.Provider value={{ gradients, filter, loading, error, dispatch}}>
+    <FilterContext.Provider value={{ colors, gradients, filter, loading, error, dispatch}}>
       {children}
     </FilterContext.Provider>
   )

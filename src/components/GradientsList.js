@@ -1,5 +1,6 @@
 import { useFilter } from "../context/FilterContext";
-import Gradient from "./Gradient";
+import Gradient from "./Gradient"
+
 
 const GradientsList = () => {
   const { gradients, loading } = useFilter();

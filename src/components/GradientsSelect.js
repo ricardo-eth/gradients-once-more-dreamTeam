@@ -1,32 +1,10 @@
 import { useFilter } from "../context/FilterContext"
 
 
-function allTags(list) {
-
-  /* retourner la liste des tags uniques */
-  let listTotal = [];
-  for (let element of list) {
-    if ("tags" in element) {
-      listTotal = listTotal.concat(element.tags);
-    }
-  }
-  const listTagsUnique = [];
-  listTotal.forEach((el) => {
-    if (!listTagsUnique.includes(el)) {
-      //listTagsUnique = listTagsUnique.concat([el])
-      listTagsUnique.push(el);
-    }
-  });
-
-  return listTagsUnique;
-}
-
-
-
 const GradientsSelect = () => {
-  const { dispatch, filter, gradients } = useFilter()
+  const { dispatch, filter, colors } = useFilter()
 
-  const uniqueTags = allTags(gradients);
+  
 
   const handleSelectChange = (e) => {
     dispatch({ type: "FILTER_CHANGE", payload: e.target.value})
@@ -44,7 +22,7 @@ const GradientsSelect = () => {
         onChange={handleSelectChange}
       >
         <option value="all">Tous</option>
-        {uniqueTags.map((el) => (
+        {colors.map((el) => (
           <option key={el} value={el}>
             {el}
           </option>
