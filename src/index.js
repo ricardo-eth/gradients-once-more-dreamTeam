@@ -7,11 +7,12 @@ import * as serviceWorker from "./serviceWorker"
 import {FilterContextProvider} from "./context/FilterContext"
 
 ReactDOM.render(
-  <FilterContextProvider>
-      <React.StrictMode>
+  
+  <React.StrictMode>
+    <FilterContextProvider>
       <App />
-    </React.StrictMode>
-  </FilterContextProvider>,
+    </FilterContextProvider>
+  </React.StrictMode>,
   
   document.getElementById("root")
 )

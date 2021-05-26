@@ -9,6 +9,7 @@ const initialState = {
     name: "",
     star: "",
     end: "",
+    tags: [],
     id: "",
   }],
   filter: "all",
@@ -20,7 +21,7 @@ export const FilterContextProvider = ({children}) => {
   const [state, dispatch] = useReducer(filterReducer, initialState)
   const { gradients, loading, error, filter } = state
   const isMounted = useIsMounted()
-  console.log(gradients)
+  
 
   useEffect(() => {
     dispatch({type: 'FETCH_INIT'})
@@ -37,6 +38,7 @@ export const FilterContextProvider = ({children}) => {
         if (isMounted.current) {
         dispatch({type: 'FETCH_SUCCESS', payload: result})
         }
+        
       })
       .catch((error) => {
         console.error(error.message)

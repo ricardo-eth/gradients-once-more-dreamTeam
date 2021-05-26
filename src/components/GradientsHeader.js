@@ -8,7 +8,6 @@ import { ReactComponent as Prev } from "bootstrap-icons/icons/arrow-left.svg"
 const GradientsHeader = (props) => {
   const { children } = props
   const { gradients, loading } = useFilter()
-  console.log(gradients)
   //console.log(list)
   const length = gradients.length
 
@@ -26,7 +25,7 @@ const GradientsHeader = (props) => {
   }
 
   const style = {
-    backgroundImage: `linear-gradient(to right, ${gradients[randomGradient].start}, ${gradients[randomGradient].end})`
+    backgroundImage: `linear-gradient(to right, "rgb(218, 226, 248)", "rgb(214, 164, 164)")`
   }
   return (
     loading ? (

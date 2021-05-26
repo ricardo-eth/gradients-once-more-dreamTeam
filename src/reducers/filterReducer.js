@@ -3,7 +3,31 @@ export const filterReducer = (state, action) => {
     case 'FETCH_INIT':
       return { ...state, loading: true, error: "" }
     case 'FETCH_SUCCESS':
-      return { gradients: action.payload, loading: false, error: "" }
+      let list = [];
+      if (state.filter !== 'all') {
+        action.payload.forEach((elem) => {
+          if (elem.tags.includes(state.filter)) {
+            list.push({
+              colorStart: elem.start,
+              colorEnd: elem.end,
+              name: elem.name,
+              tags: elem.tags,
+              id: elem.id
+            })
+          }
+        })
+      } else {
+          for (let i = 0; i < action.payload.length; i++) {
+            list.push({
+              colorStart: action.payload[i].start,
+              colorEnd: action.payload[i].end,
+              name: action.payload[i].name,
+              tags: action.payload[i].tags,
+              id: action.payload[i].id
+            })
+          }
+      }
+      return { gradients: list, loading: false, error: "" }
     case 'FETCH_FAILURE':
       return { ...state, loading: false, error: action.payload }
     case 'FILTER_CHANGE':
