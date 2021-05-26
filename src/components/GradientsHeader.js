@@ -25,7 +25,7 @@ const GradientsHeader = (props) => {
   }
 
   const style = {
-    backgroundImage: `linear-gradient(to right, "rgb(218, 226, 248)", "rgb(214, 164, 164)")`
+    backgroundImage: `linear-gradient(to right, ${gradients[randomGradient].colorStart}, ${gradients[randomGradient].colorEnd})`
   }
   return (
     loading ? (
