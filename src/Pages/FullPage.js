@@ -1,23 +1,19 @@
 import Footer from "../components/Footer";
-import { useState } from "react";
 import { useFilter } from "../context/FilterContext";
 
 export const FullPage = () => {
   const { gradients } = useFilter();
-  const length = gradients.length;
 
-  const chooseGradient = () => Math.floor(Math.random() * length);
+  let pageURL = window.location.href;
+  let lastURLSegment = pageURL.substr(pageURL.lastIndexOf("/") + 1);
+  console.log(lastURLSegment);
 
-  const [randomGradient, setRandomGradient] = useState(chooseGradient);
-  const handleNextClick = () => {
-    setRandomGradient(randomGradient === length - 1 ? 0 : randomGradient + 1);
-  };
-  const handlePrevClick = () => {
-    setRandomGradient(randomGradient === 0 ? length - 1 : randomGradient - 1);
-  };
+  console.log(gradients[lastURLSegment - 1]);
+
+  const gradientsURL = gradients[lastURLSegment - 1];
 
   const style = {
-    backgroundImage: `linear-gradient(to right, ${gradients[randomGradient].colorStart}, ${gradients[randomGradient].colorEnd})`,
+    backgroundImage: `linear-gradient(to right, ${gradientsURL.colorStart}, ${gradientsURL.colorEnd})`,
   };
 
   return (
@@ -46,13 +42,13 @@ export const FullPage = () => {
                 Suivant
               </a>
             </li>
-          </nav>{" "}
+          </nav>
           <div className="m-auto text-center">
-            <h1 className="text-white display-1">{gradients.name}</h1>
+            <h1 className="text-white display-1">{gradientsURL.name}</h1>
             <div className="bg-white shadow p-2 rounded">
               <code>
-                background-image: linear-gradient(to right, rgb(253, 200, 48),
-                rgb(243, 115, 53));
+                background-image: linear-gradient(to right,
+                {gradientsURL.colorStart},{gradientsURL.colorEnd})
               </code>
             </div>
           </div>
