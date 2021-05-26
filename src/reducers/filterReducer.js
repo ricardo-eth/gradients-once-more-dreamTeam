@@ -7,7 +7,6 @@ export const filterReducer = (state, action) => {
       if (state.filter !== 'all') {
         action.payload.forEach((elem) => {
           if (elem.tags.includes(state.filter)) {
-            console.log(elem)
             list.push({
               colorStart: elem.start,
               colorEnd: elem.end,
