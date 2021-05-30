@@ -1,54 +1,62 @@
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import { useFilter } from "../context/FilterContext";
 
+
 export const FullPage = () => {
-  const { gradients } = useFilter();
+  const { gradients, index, dispatch} = useFilter();
 
-  let pageURL = window.location.href;
-  let lastURLSegment = pageURL.substr(pageURL.lastIndexOf("/") + 1);
-  console.log(lastURLSegment);
+  // let pageURL = window.location.href;
+  // let lastURLSegment = pageURL.substr(pageURL.lastIndexOf("/") + 1);
+  // console.log(lastURLSegment);
 
-  console.log(gradients[lastURLSegment - 1]);
+  // console.log(gradients[lastURLSegment - 1]);
 
-  const gradientsURL = gradients[lastURLSegment - 1];
+  // const gradientsURL = gradients[lastURLSegment - 1];
 
   const style = {
-    backgroundImage: `linear-gradient(to right, ${gradientsURL.colorStart}, ${gradientsURL.colorEnd})`,
+    backgroundImage: `linear-gradient(to right, ${gradients[index].colorStart}, ${gradients[index].colorEnd})`,
   };
+
+  const handleAllButton = () => {
+    dispatch({type: 'FILTER_CHANGE', payload: "all"})
+  }
+
+  const handlePrevButton = () => {
+    dispatch({type: 'FULL_PAGE', payload: 'prev'})
+  }
+
+  const handleNextButton = () => {
+    dispatch({type: 'FULL_PAGE', payload: 'next'})
+  }
 
   return (
     <>
-      <div class="min-vh-100 d-flex flex-column">
+      <div className="min-vh-100 d-flex flex-column">
         <div className="flex-fill d-flex" style={style}>
           <nav className="fixed-top nav">
             <li className="nav-item">
-              <a className="btn btn-dark text-white nav-link me-2" href="/">
-                Tous
-              </a>
+              <Link onClick={handleAllButton} className="btn btn-dark text-white nav-link me-2" to={`/`}>
+               Tous
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                class="btn btn-dark text-white nav-link me-2"
-                href="/gradient/6"
-              >
-                Précédent
-              </a>
+              <Link onClick={handlePrevButton} className="btn btn-dark text-white nav-link me-2" to={`/gradient/${gradients[index === 0 ? gradients.length - 1 : index - 1].id}`}>
+               Précédent
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="btn btn-dark text-white nav-link"
-                href="/gradient/8"
-              >
-                Suivant
-              </a>
+              <Link onClick={handleNextButton} className="btn btn-dark text-white nav-link me-2" to={`/gradient/${gradients[index === 24 ? 0 : index + 1].id}`}>
+               suivant
+              </Link>
             </li>
           </nav>
           <div className="m-auto text-center">
-            <h1 className="text-white display-1">{gradientsURL.name}</h1>
+            <h1 className="text-white display-1">{gradients[index].name}</h1>
             <div className="bg-white shadow p-2 rounded">
               <code>
                 background-image: linear-gradient(to right,
-                {gradientsURL.colorStart},{gradientsURL.colorEnd})
+                {gradients[index].colorStart},{gradients[index].colorEnd})
               </code>
             </div>
           </div>

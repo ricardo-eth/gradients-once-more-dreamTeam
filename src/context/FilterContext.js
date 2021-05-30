@@ -27,20 +27,30 @@ export const FilterContext = createContext()
 const initialState = {
   gradients: [{
     name: "",
-    star: "",
-    end: "",
+    colorStart: "",
+    colorEnd: "",
     tags: [],
     id: "",
   }],
-  filter: "all",
+  filter: {
+    color: "all",
+    gradients: [{
+    name: "",
+    colorStart: "",
+    colorEnd: "",
+    tags: [],
+    id: "",
+    }]
+  },
   loading: false,
-  error: ""
+  error: "",
+  index: 0
 }
 
 export const FilterContextProvider = ({children}) => {
   const [colors, setColors] = useState([])
   const [state, dispatch] = useReducer(filterReducer, initialState)
-  const { gradients, loading, error, filter } = state
+  const { gradients, loading, error, filter, index } = state
   const isMounted = useIsMounted()
   
 
@@ -68,11 +78,11 @@ export const FilterContextProvider = ({children}) => {
           dispatch({type: 'FETCH_FAILURE', payload: error.message})
         }
       })
-  }, [isMounted, filter]) 
+  }, [isMounted]) 
 
   
   return (
-    <FilterContext.Provider value={{ colors, gradients, filter, loading, error, dispatch}}>
+    <FilterContext.Provider value={{ colors, gradients, filter, loading, error, index, dispatch}}>
       {children}
     </FilterContext.Provider>
   )

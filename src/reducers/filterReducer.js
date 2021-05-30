@@ -3,22 +3,9 @@ export const filterReducer = (state, action) => {
     case 'FETCH_INIT':
       return { ...state, loading: true, error: "" }
     case 'FETCH_SUCCESS':
-      let list = [];
-      if (state.filter !== 'all') {
-        action.payload.forEach((elem) => {
-          if (elem.tags.includes(state.filter)) {
-            list.push({
-              colorStart: elem.start,
-              colorEnd: elem.end,
-              name: elem.name,
-              tags: elem.tags,
-              id: elem.id
-            })
-          }
-        })
-      } else {
-          for (let i = 0; i < action.payload.length; i++) {
-            list.push({
+      let listInit = [];
+      for (let i = 0; i < action.payload.length; i++) {
+            listInit.push({
               colorStart: action.payload[i].start,
               colorEnd: action.payload[i].end,
               name: action.payload[i].name,
@@ -26,12 +13,44 @@ export const filterReducer = (state, action) => {
               id: action.payload[i].id
             })
           }
-      }
-      return {...state, gradients: list, loading: false, error: "" }
+          console.log(listInit)
+      return {...state, gradients: listInit, filter:{color: "all", gradients: listInit}, loading: false, error: "" }
     case 'FETCH_FAILURE':
       return { ...state, loading: false, error: action.payload }
     case 'FILTER_CHANGE':
-      return {...state, filter: action.payload}
+      let list = [];
+      if (action.payload !== 'all') {
+        state.gradients.forEach((elem) => {
+          if (elem.tags.includes(action.payload)) {
+            list.push({
+              colorStart: elem.colorStart,
+              colorEnd: elem.colorEnd,
+              name: elem.name,
+              tags: elem.tags,
+              id: elem.id
+            })
+          }
+        })
+      } else {
+          for (let i = 0; i < state.gradients.length; i++) {
+            list.push({
+              colorStart: state.gradients[i].colorStart,
+              colorEnd: state.gradients[i].colorEnd,
+              name: state.gradients[i].name,
+              tags: state.gradients[i].tags,
+              id: state.gradients[i].id
+            })
+          }
+      }
+      return {...state, filter: {color: action.payload, gradients: list}}
+      case 'FULL_PAGE':
+        if (action.payload === 'prev'){
+          return {...state, index: state.index === 0 ? state.gradients.length - 1 : state.index - 1}
+        } else if (action.payload === 'next') {
+          return {...state, index: state.index === 24 ? 0 : state.index + 1}
+        } else {
+          return {...state, index: action.payload}
+        }
     default:
       throw new Error(`Unsupported action type ${action.type} in userReducer`)
   }

@@ -3,13 +3,13 @@ import Gradient from "./Gradient"
 
 
 const GradientsList = () => {
-  const { gradients, loading } = useFilter();
+  const { filter, loading } = useFilter();
 
   return loading ? (
     <p>loading...</p>
   ) : (
     <ul className="row list-unstyled">
-      {gradients.map((el) => {
+      {filter.gradients.map((el) => {
         const { name, colorStart, colorEnd, tags, id = [] } = el;
         return (
           <Gradient
@@ -19,6 +19,7 @@ const GradientsList = () => {
             name={name}
             tags={tags}
             id={id}
+            index={id - 1}
           />
         );
       })}

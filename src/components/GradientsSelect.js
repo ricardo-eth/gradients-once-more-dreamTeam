@@ -18,7 +18,7 @@ const GradientsSelect = () => {
       <select
         className="form-select"
         id="select"
-        value={filter}
+        value={filter.color}
         onChange={handleSelectChange}
       >
         <option value="all">Tous</option>
