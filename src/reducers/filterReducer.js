@@ -13,7 +13,6 @@ export const filterReducer = (state, action) => {
               id: action.payload[i].id
             })
           }
-          console.log(listInit)
       return {...state, gradients: listInit, filter:{color: "all", gradients: listInit}, loading: false, error: "" }
     case 'FETCH_FAILURE':
       return { ...state, loading: false, error: action.payload }
