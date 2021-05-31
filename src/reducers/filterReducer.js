@@ -42,6 +42,14 @@ export const filterReducer = (state, action) => {
           }
       }
       return {...state, filter: {color: action.payload, gradients: list}}
+      case 'FULL_PAGE':
+        if (action.payload === 'prev'){
+          return {...state, index: state.index === 0 ? state.gradients.length - 1 : state.index - 1}
+        } else if (action.payload === 'next') {
+          return {...state, index: state.index === 24 ? 0 : state.index + 1}
+        } else {
+          return {...state, index: action.payload}
+        }
     default:
       throw new Error(`Unsupported action type ${action.type} in userReducer`)
   }
