@@ -19,3 +19,33 @@ code {
 code {
   color: #3c5179;
 }
+
+.text-anim {
+  padding-bottom: 10px;
+  overflow: hidden;
+  border-right: 0.1em solid #fff;
+  white-space: nowrap;
+  margin: 0 auto 20px;
+  animation: typing 3.5s steps(40, end) 5s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
+  animation-delay: 2s;
+  height: 80px;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: #fff;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
