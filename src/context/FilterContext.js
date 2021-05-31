@@ -44,7 +44,6 @@ const initialState = {
   },
   loading: false,
   error: "",
-  index: 0
 }
 
 export const FilterContextProvider = ({children}) => {

@@ -10,9 +10,7 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/gradient/:id">
-              <FullPage />
-            </Route>
+            <Route exact path="/gradient/:id" component={FullPage} />
             <Route path="*" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>
