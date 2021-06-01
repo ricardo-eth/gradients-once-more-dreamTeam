@@ -20,7 +20,7 @@ export const FullPage = () => {
 
   return (
     <>
-      <div className={`min-vh-100 d-flex flex-column ${id < 1 ? "bg-dark": ""}`}>
+      <div className={`min-vh-100 d-flex flex-column ${id < 1 || id != typeof 1 ? "bg-dark": ""}`}>
         <div className="flex-fill d-flex" style={style}>
           <nav className="fixed-top nav p-3">
             <li className="nav-item">
@@ -57,7 +57,7 @@ export const FullPage = () => {
               )}
             </li>
           </nav>
-          {id > 1 ? <div className="m-auto text-center">
+          {id > 0 ? <div className="m-auto text-center">
             <h1 className="text-white display-1 text-anim">
               {gradients[id - 1]?.name}
             </h1>
