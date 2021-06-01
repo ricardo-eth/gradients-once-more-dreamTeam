@@ -11,25 +11,3 @@
   animation: fa-spin 0.0002s infinite linear;
   transform: scale(2.5);
 }
-
-.zoom {
-  animation: zoom 1s;
-}
-
-@-webkit-keyframes zoom {
-  from {
-    -webkit-transform: scale(1, 1);
-  }
-  to {
-    -webkit-transform: scale(10, 10);
-  }
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(1, 1);
-  }
-  to {
-    transform: scale(1.5, 1.5);
-  }
-}
