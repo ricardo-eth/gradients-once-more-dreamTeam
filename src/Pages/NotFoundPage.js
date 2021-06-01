@@ -15,7 +15,7 @@ export const NotFoundPage = () => {
         <div className="flex-fill d-flex" style={style}>
           <div className="m-auto text-center">
             <img
-              className="far fa-spin slow-spin zoom"
+              className="far fa-spin slow-spin"
               src={mainLogo}
               alt="fireSpot"
             />
