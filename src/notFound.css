@@ -1,57 +1,35 @@
-.main {
-  background-color: #95c2de;
-  
+.slow-spin {
+  -webkit-animation: fa-spin 5s infinite linear;
+  animation: fa-spin 5s infinite linear;
+  transition: 1s ease;
+  width: 200px;
+  height: 200px;
 }
 
-.mainbox {
-  background-color: #95c2de;
-  margin: auto;
-  height: 600px;
-  width: 600px;
-  position: relative;
+.slow-spin:hover {
+  -webkit-animation: fa-spin 0.0002s infinite linear;
+  animation: fa-spin 0.0002s infinite linear;
+  transform: scale(2.5);
 }
 
-  .err {
-    color: #ffffff;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 11rem;
-    position:absolute;
-    left: 20%;
-    top: 8%;
+.zoom {
+  animation: zoom 1s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(1, 1);
   }
-
-.far {
-  position: absolute;
-  font-size: 8.5rem;
-  left: 42%;
-  top: 15%;
-  color: #ffffff;
+  to {
+    -webkit-transform: scale(10, 10);
+  }
 }
 
- .err2 {
-    color: #ffffff;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 11rem;
-    position:absolute;
-    left: 68%;
-    top: 8%;
+@keyframes zoom {
+  from {
+    transform: scale(1, 1);
   }
-
-.msg {
-    text-align: center;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.6rem;
-    position:absolute;
-    left: 16%;
-    top: 45%;
-    width: 75%;
+  to {
+    transform: scale(1.5, 1.5);
   }
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-  text-decoration: underline;
 }
