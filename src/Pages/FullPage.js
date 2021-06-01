@@ -20,7 +20,7 @@ export const FullPage = () => {
 
   return (
     <>
-      <div className="min-vh-100 d-flex flex-column">
+      <div className={`min-vh-100 d-flex flex-column ${id < 1 ? "bg-dark": ""}`}>
         <div className="flex-fill d-flex" style={style}>
           <nav className="fixed-top nav p-3">
             <li className="nav-item">
@@ -57,7 +57,7 @@ export const FullPage = () => {
               )}
             </li>
           </nav>
-          <div className="m-auto text-center">
+          {id > 1 ? <div className="m-auto text-center">
             <h1 className="text-white display-1 text-anim">
               {gradients[id - 1]?.name}
             </h1>
@@ -67,7 +67,13 @@ export const FullPage = () => {
                 {gradients[id - 1]?.colorStart},{gradients[id - 1]?.colorEnd})
               </code>
             </div>
+          </div> :
+           <div className="m-auto text-center">
+            <h1 className="text-white display-1 text-anim">
+              oups ce gradient n'existe pas
+            </h1>
           </div>
+          }
         </div>
       </div>
       <Footer />
