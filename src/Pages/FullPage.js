@@ -75,8 +75,8 @@ export const FullPage = () => {
           </div>
           }
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
