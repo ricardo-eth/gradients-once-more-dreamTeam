@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import "../notFound.css"
 
 export const NotFoundPage = () => {
   const style = {
@@ -12,7 +13,7 @@ export const NotFoundPage = () => {
       <div className="min-vh-100 d-flex flex-column">
         <div className="flex-fill d-flex" style={style}>
           <div className="m-auto text-center">
-            <h1 className="text-white display-1">Error 404</h1>
+            <h1 className="text-white display-1">Error 4<i className="far fa-question-circle fa-spin"></i>04</h1>
             <h3 className="text-white">page not found</h3>
             <Link className="btn btn-dark text-white me-2" to={`/`}>
               Retour
