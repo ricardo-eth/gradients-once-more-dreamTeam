@@ -29,7 +29,6 @@ code {
   animation: typing 3.5s steps(40, end) 5s 1 normal both,
     blinkTextCursor 500ms steps(44) infinite normal;
   animation-delay: 2s;
-  height: 80px;
 }
 
 @keyframes typing {
