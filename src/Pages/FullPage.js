@@ -57,7 +57,7 @@ export const FullPage = () => {
               )}
             </li>
           </nav>
-          {id > 0 && id < 25 ? <div className="m-auto text-center">
+          {id > 0 && id < 26 ? <div className="m-auto text-center">
             <h1 className="text-white display-1 text-anim">
               {gradients[id - 1]?.name}
             </h1>
