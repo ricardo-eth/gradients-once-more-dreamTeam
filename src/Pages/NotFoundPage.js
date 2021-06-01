@@ -20,8 +20,9 @@ export const NotFoundPage = () => {
             </Link>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
+      
     </>
   );
 };
