@@ -14,7 +14,6 @@ function allTags(tags) {
   const listTagsUnique = [];
   listTotal.forEach((el) => {
     if (!listTagsUnique.includes(el)) {
-      //listTagsUnique = listTagsUnique.concat([el])
       listTagsUnique.push(el);
     }
   });
@@ -25,13 +24,7 @@ function allTags(tags) {
 export const FilterContext = createContext()
 
 const initialState = {
-  gradients: [{
-    name: "",
-    colorStart: "",
-    colorEnd: "",
-    tags: [],
-    id: "",
-  }],
+  gradients: [{}],
   filter: {
     color: "all",
     gradients: [{

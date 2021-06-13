@@ -5,6 +5,7 @@ import { useFilter } from "../context/FilterContext";
 export const FullPage = () => {
   const params = useParams();
   const { id } = params;
+  console.log(params)
   const { gradients, dispatch } = useFilter();
 
   const handleAllButton = () => {
